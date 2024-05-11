@@ -1,5 +1,6 @@
+import { Button } from '@mui/material';
 import React from 'react'
-interface Astrologer {
+export interface Astrologer {
     name: string,
     gender: string,
     email: string,
@@ -10,14 +11,16 @@ interface Astrologer {
 
 interface AstrologerCardProps {
     astrologer: Astrologer;
+    onEdit: () => void;
 }
-const AstrologerCard: React.FC<AstrologerCardProps> = ({ astrologer }) => {
+const AstrologerCard: React.FC<AstrologerCardProps> = ({ astrologer,onEdit }) => {
     // console.log(astrologer,"astrologer")
     return (
         <div>
             <img src={astrologer.profileImageUrl}/>
             <h2>{astrologer.name}</h2>
             <p>Email: {astrologer.email}</p>
+            <Button variant="outlined" onClick={onEdit}>Edit</Button>
         </div>
     )
 }

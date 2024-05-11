@@ -21,7 +21,9 @@ const Astrologer = () => {
     return (
         <div>
             {data?.map((el:Astrologer) => (
-                <AstrologerCard key={el.id} astrologer={el} />
+                <AstrologerCard key={el.id} astrologer={el} onEdit={function (): void {
+                    throw new Error('Function not implemented.');
+                } } />
             ))}
         </div>
     )

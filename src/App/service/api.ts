@@ -16,7 +16,7 @@ export const astrologerApi = createApi({
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: obj
+                body: JSON.stringify(obj)
             })
         }),
         updateAstologer: builder.mutation({
@@ -26,7 +26,7 @@ export const astrologerApi = createApi({
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: obj
+                body: JSON.stringify(obj)
             })
         })
     })
