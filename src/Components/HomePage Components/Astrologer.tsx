@@ -12,9 +12,9 @@ interface Astrologer{
    }
 const Astrologer = () => {
     const { data, isError, isLoading } = useGetAllastrologersQuery(undefined);
-    console.log(data, "DAta")
-    console.log(isLoading, "isLoading")
-    console.log(isError, "error")
+    // console.log(data, "DAta")
+    // console.log(isLoading, "isLoading")
+    // console.log(isError, "error")
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error: {isError}</div>;
