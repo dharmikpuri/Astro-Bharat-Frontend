@@ -36,6 +36,7 @@ const Registration = () => {
             }
 
             const imageUrl = await ImageUpload(image);
+            // console.log(imageUrl,"I am imageURL")
             if (imageUrl) {
                 const formData = {
                     name,
@@ -43,7 +44,7 @@ const Registration = () => {
                     email,
                     languages: selectedLanguages,
                     specialities: selectedSpecialties,
-                    profileImageUrl: imageUrl
+                    image: imageUrl
                 };
                 const result = await data(formData);
                 console.log(result.data.message, "result");
@@ -57,6 +58,7 @@ const Registration = () => {
                 alert("Registration failed. Please try again later.");
             }
         }
+        console.log(registerAstrologer,"Register Astrologer")
     };
 
     const ImageUpload = async (image: File) => {

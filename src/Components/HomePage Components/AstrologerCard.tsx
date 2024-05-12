@@ -24,7 +24,9 @@ const AstrologerCard: React.FC<AstrologerCardProps> = ({ astrologer }) => {
             <div>
                 <img src={astrologer.profileImageUrl} />
                 <h2>{astrologer.name}</h2>
-                <p>Email: {astrologer.email}</p>
+                <p>{astrologer.email}</p>
+                <p>{astrologer.languages.join(",")}</p>
+                <p>{astrologer.specialities.join(",")}</p>
                 <Button variant="outlined" onClick={()=>navigate(`/updateAstrologer/${astrologer._id}`,{state:astrologer})}>Edit</Button>
             </div>
 
