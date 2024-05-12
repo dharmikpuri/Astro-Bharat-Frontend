@@ -116,17 +116,17 @@ const Registration = () => {
     };
 
     return (
-        <Container maxWidth="sm">
-            <Typography variant="h4" align="center" gutterBottom>Registration</Typography>
+        <Container maxWidth="md">
+            <Typography variant="h3" align="center" gutterBottom style={{marginBottom:"2rem"}}>Become a Astrologer With AstroBharat</Typography>
             <Box component="form" sx={{ width: "100%" }} onSubmit={(e) => {
                 e.preventDefault();
                 handleSubmit();
             }}>
                 <Input type="file" onChange={handleImageChange} ref={imageInputRef}/>
-                <TextField fullWidth label="Name" value={name} onChange={(e) => setName(e.target.value)} margin="normal" />
-                <TextField fullWidth label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} margin="normal" />
+                <TextField fullWidth label="Enter Your Name" value={name} onChange={(e) => setName(e.target.value)} margin="normal" />
+                <TextField fullWidth label="Enter Your Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} margin="normal" />
                 <FormControl fullWidth margin="normal">
-                    <InputLabel>Gender</InputLabel>
+                    <InputLabel>Select Your Gender</InputLabel>
                     <Select value={gender} onChange={(e) => setGender(e.target.value as string)}>
                         <MenuItem value="">Select Your Gender</MenuItem>
                         <MenuItem value="male">Male</MenuItem>
