@@ -1,28 +1,32 @@
-import React, { Key } from 'react'
+import React, { Key, useEffect } from 'react'
 import { useGetAllastrologersQuery } from '../../App/service/api';
 import AstrologerCard from './AstrologerCard';
-interface Astrologer{
+import Loading from '../LoadingIndicator/Loading';
+interface Astrologer {
     _id: string;
-    name:string,
-    gender:string,
-    email:string,
-    languages:[string],
-    specialities:[string],
-    profileImageUrl:string
-   }
+    name: string,
+    gender: string,
+    email: string,
+    languages: [string],
+    specialities: [string],
+    profileImageUrl: string
+}
 const Astrologer = () => {
-    const { data, isError, isLoading } = useGetAllastrologersQuery(undefined);
+    const { data, isError, isLoading,refetch } = useGetAllastrologersQuery(undefined);
     console.log(data, "DAta")
     // console.log(isLoading, "isLoading")
     // console.log(isError, "error")
-
-    if (isLoading) return <div>Loading...</div>;
+useEffect(()=>{
+    refetch();
+},[])
+    if (isLoading) return <div><Loading /></div>;
     if (isError) return <div>Error: {isError}</div>;
     return (
         <div>
-            {data?.map((el:Astrologer) => (
-                <AstrologerCard key={el._id} astrologer={el}/>
+            {data && [...data].reverse().map((el: Astrologer) => (
+                <AstrologerCard key={el._id} astrologer={el} />
             ))}
+
         </div>
     )
 }

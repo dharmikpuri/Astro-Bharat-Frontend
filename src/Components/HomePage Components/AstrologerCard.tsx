@@ -15,7 +15,7 @@ const AstrologerCard: React.FC<AstrologerCardProps> = ({ astrologer }) => {
         {
             field: "profileImageUrl",
             headerName: "Profile Image",
-            width: 10*8,
+            width: 200,
             renderCell: (params) => <img src={params.value} alt="Astrologer" />,
         },
         { field: 'name', headerName: 'Name', flex: 1 },

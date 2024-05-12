@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-const baseURL = "http://localhost:8080"
+const baseURL = "https://astro-bharat-backend-dharmik.onrender.com"
 
 export const astrologerApi = createApi({
     reducerPath: "astrologerApi",

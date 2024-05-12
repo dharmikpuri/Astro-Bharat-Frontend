@@ -1,8 +1,10 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { TextField, Checkbox, FormControlLabel, Button, FormGroup, Box, Typography, Container, FormControl, InputLabel, Select, MenuItem, Grid, Input } from '@mui/material';
 import { useRegisterAstrologerMutation } from '../../App/service/api';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
+    const navigate = useNavigate();
     const [data, registerAstrologer] = useRegisterAstrologerMutation();
     const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
     const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
@@ -63,6 +65,7 @@ const Registration = () => {
                     if (imageInputRef.current) {
                         imageInputRef.current.value = ''; // Reset the input field
                     }
+                    navigate("/")
                 }
             } else {
                 console.error("Image upload failed or no image provided");
@@ -116,7 +119,7 @@ const Registration = () => {
     };
 
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="md" style={{marginTop:"5rem"}}>
             <Typography variant="h3" align="center" gutterBottom style={{marginBottom:"2rem"}}>Become a Astrologer With AstroBharat</Typography>
             <Box component="form" sx={{ width: "100%" }} onSubmit={(e) => {
                 e.preventDefault();

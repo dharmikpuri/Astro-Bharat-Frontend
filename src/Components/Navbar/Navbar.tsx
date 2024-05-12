@@ -8,7 +8,9 @@ const Navbar = () => {
             <Container maxWidth="lg">
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <a href='/'>
                         <img src="https://static.wixstatic.com/media/202854_570469b58fc34ebb8dc8f7f2f8f127b5~mv2.png/v1/fill/w_365,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Logos-1.png" alt="Logo" style={{ height: 40, marginRight: 10 }} />
+                        </a>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Button component={Link} to="/" color="inherit" sx={{ marginRight: 2, color: '#aa8944' }}>

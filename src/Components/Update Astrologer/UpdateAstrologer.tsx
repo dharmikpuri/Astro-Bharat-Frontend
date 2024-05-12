@@ -1,18 +1,21 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { TextField, Checkbox, FormControlLabel, Button, FormGroup, Box, Typography, Container, FormControl, InputLabel, Select, MenuItem, Grid, Input } from '@mui/material';
-import { useRegisterAstrologerMutation, useUpdateAstologerMutation } from '../../App/service/api';
-import { useLocation } from 'react-router-dom';
+import {useUpdateAstologerMutation } from '../../App/service/api';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const UpdateAstrologer = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     // console.log(location.state, "State")
     const [data, registerAstrologer] = useUpdateAstologerMutation();
     const [selectedLanguages, setSelectedLanguages] = useState<string[]>(location.state.languages || []);
     const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>(location.state.specialities || []);
     const [email, setEmail] = useState<string>(location.state.email || "");
-    const [image, setImage] = useState<File | null>(null);
+    const [image, setImage] = useState<string>(location.state.profileImageUrl || "");
     const [name, setName] = useState<string>(location.state.name || "");
     const [gender, setGender] = useState<string>(location.state.gender || "");
+
+    const [formData,setFromData] = useState<boolean>(false)
 
     const handleSelectedLanguages = (language: string) => {
         if (selectedLanguages.includes(language)) {
@@ -20,11 +23,12 @@ const UpdateAstrologer = () => {
         } else {
             setSelectedLanguages([...selectedLanguages, language]);
         }
+        setFromData(true);
     };
-    useEffect(()=>{
+    useEffect(() => {
 
-        console.log(selectedLanguages,"Selected languages")
-    },[])
+        console.log(selectedLanguages, "Selected languages")
+    }, [])
 
     const handleSelectedSpecialties = (specialty: string) => {
         if (selectedSpecialties.includes(specialty)) {
@@ -32,76 +36,42 @@ const UpdateAstrologer = () => {
         } else {
             setSelectedSpecialties([...selectedSpecialties, specialty]);
         }
+        setFromData(true);
     };
 
 
     const handleSubmit = async () => {
         try {
                 const formData = {
-                    _id:location.state._id,
+                    _id: location.state._id,
                     name,
                     gender,
                     email,
                     languages: selectedLanguages,
                     specialities: selectedSpecialties,
-                    profileImageUrl: ""
+                    image: image
                 };
                 const result = await data(formData);
-                console.log(result,"result");
-            }catch (error) {
+                alert(result.data.message)
+                navigate("/")
+        } catch (error) {
             console.log(error)
         }
     };
 
-    const ImageUpload = async (image: File) => {
-        if (image.type === "image/jpeg" || image.type === "image/png") {
-            const data = new FormData();
-            data.append("file", image);
-            data.append("upload_preset", "ycagprof");
-            data.append("cloud_name", "davcdosbg");
-            try {
-                const response = await fetch("https://api.cloudinary.com/v1_1/davcdosbg/image/upload", {
-                    method: "POST",
-                    body: data,
-                });
-
-                if (response.ok) {
-                    const responseData = await response.json();
-                    return responseData.url.toString();
-                } else {
-                    console.error("Failed ");
-                    return null;
-                }
-            } catch (error) {
-                console.error("Error");
-                return null;
-            }
-        } else {
-            console.error("Image");
-            return null;
-        }
-    };
-
-    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files && files.length > 0) {
-            setImage(files[0]);
-        }
-    };
-
     return (
-        <Container maxWidth="sm">
-            <Typography variant="h4" align="center" gutterBottom>Registration</Typography>
+        <Container maxWidth="sm" style={{marginTop:"5rem"}}>
+            <Typography variant="h4" align="center" gutterBottom>Update Astrologer</Typography>
             <Box component="form" sx={{ width: "100%" }} onSubmit={(e) => {
                 e.preventDefault();
                 handleSubmit();
             }}>
-                <Input type="file" onChange={handleImageChange} />
-                <TextField fullWidth label="Name" value={name} onChange={(e) => setName(e.target.value)} margin="normal" />
-                <TextField fullWidth label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} margin="normal" />
+                <TextField fullWidth label="Image" value={image} onChange={(e) => setImage(e.target.value)} margin="normal" />
+                <TextField fullWidth label="Name" value={name} onChange={(e) => { setName(e.target.value); setFromData(true); }} margin="normal" />
+                <TextField fullWidth label="Email" type="email" value={email} onChange={(e) => {setEmail(e.target.value); setFromData(true)}} margin="normal" />
                 <FormControl fullWidth margin="normal">
                     <InputLabel>Gender</InputLabel>
-                    <Select value={gender} onChange={(e) => setGender(e.target.value as string)}>
+                    <Select value={gender} onChange={(e) => {setGender(e.target.value as string); setFromData(true)}}>
                         <MenuItem value="">Select Your Gender</MenuItem>
                         <MenuItem value="male">Male</MenuItem>
                         <MenuItem value="female">Female</MenuItem>
@@ -132,7 +102,7 @@ const UpdateAstrologer = () => {
                         </FormControl>
                     </Grid>
                 </Grid>
-                <Button type="submit" variant="contained" color="primary" sx={{ marginTop: 2 }}>
+                <Button type="submit" variant="contained" color="primary" sx={{ marginTop: 2 }} disabled={!formData}>
                     Submit
                 </Button>
             </Box>
