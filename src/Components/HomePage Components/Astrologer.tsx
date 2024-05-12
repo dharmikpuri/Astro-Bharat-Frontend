@@ -2,7 +2,7 @@ import React, { Key } from 'react'
 import { useGetAllastrologersQuery } from '../../App/service/api';
 import AstrologerCard from './AstrologerCard';
 interface Astrologer{
-    id: Key | null | undefined;
+    _id: string;
     name:string,
     gender:string,
     email:string,
@@ -12,7 +12,7 @@ interface Astrologer{
    }
 const Astrologer = () => {
     const { data, isError, isLoading } = useGetAllastrologersQuery(undefined);
-    // console.log(data, "DAta")
+    console.log(data, "DAta")
     // console.log(isLoading, "isLoading")
     // console.log(isError, "error")
 
@@ -21,9 +21,7 @@ const Astrologer = () => {
     return (
         <div>
             {data?.map((el:Astrologer) => (
-                <AstrologerCard key={el.id} astrologer={el} onEdit={function (): void {
-                    throw new Error('Function not implemented.');
-                } } />
+                <AstrologerCard key={el._id} astrologer={el}/>
             ))}
         </div>
     )

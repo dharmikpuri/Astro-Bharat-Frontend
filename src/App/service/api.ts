@@ -20,13 +20,13 @@ export const astrologerApi = createApi({
             })
         }),
         updateAstologer: builder.mutation({
-            query: ({ id, obj }) => ({
-                url: `/api/astrologers/${id}`,
+            query: (Data) => ({
+                url: `/api/astrologers/${Data._id}`,
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(obj)
+                body: JSON.stringify(Data)
             })
         })
     })
