@@ -1,40 +1,61 @@
+import React from 'react';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
-
-export interface Astrologer {
-    _id: string,
-    name: string,
-    gender: string,
-    email: string,
-    languages: [string],
-    specialities: [string],
-    profileImageUrl: string
-}
+import Astrologer from './Astrologer';
 
 interface AstrologerCardProps {
     astrologer: Astrologer;
 }
-const AstrologerCard: React.FC<AstrologerCardProps> = ({ astrologer }) => {
-    const navigate= useNavigate();
 
+const AstrologerCard: React.FC<AstrologerCardProps> = ({ astrologer }) => {
+    const navigate = useNavigate();
+
+    const columns: GridColDef[] = [
+        {
+            field: "profileImageUrl",
+            headerName: "Profile Image",
+            width: 10*8,
+            renderCell: (params) => <img src={params.value} alt="Astrologer" />,
+        },
+        { field: 'name', headerName: 'Name', flex: 1 },
+        { field: 'gender', headerName: 'Gender', flex: 1 },
+        { field: 'email', headerName: 'Email', flex: 1 },
+        {
+            field: 'languages',
+            headerName: 'Languages',
+        },
+        {
+            field: 'specialities',
+            headerName: 'Specialities',
+            flex: 1
+        },
+        {
+            field: 'edit',
+            flex: 1,
+            renderCell: (params) => (
+                <Button variant="outlined" onClick={() => navigate(`/updateAstrologer/${params.id}`, { state: astrologer })}>
+                    Edit
+                </Button>
+            ),
+        },
+    ];
+
+    const rows = [astrologer];
 
     return (
-        <>
-            <div>
-                <img src={astrologer.profileImageUrl} />
-                <h2>{astrologer.name}</h2>
-                <p>{astrologer.email}</p>
-                <p>{astrologer.languages.join(",")}</p>
-                <p>{astrologer.specialities.join(",")}</p>
-                <Button variant="outlined" onClick={()=>navigate(`/updateAstrologer/${astrologer._id}`,{state:astrologer})}>Edit</Button>
-            </div>
+        <div style={{ height: "150px", width: '100%', border: '1px solid #ccc', borderRadius: '8px', overflow: 'hidden',marginBottom:"0.5rem" }}>
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                autoHeight
+                disableColumnMenu
+                disableColumnSelector
+                hideFooterPagination
+                getRowId={(el) => el._id}
+            />
+        </div>
+    );
+};
 
-          
-        </>
-
-
-    )
-}
-
-export default AstrologerCard
+export default AstrologerCard;

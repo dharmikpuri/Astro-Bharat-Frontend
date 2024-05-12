@@ -1,10 +1,10 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, Container } from '@mui/material';
 import { Link } from 'react-router-dom'; // Assuming you're using React Router
 
 const Navbar = () => {
     return (
-        <AppBar position="fixed" sx={{ backgroundColor: '#ffffff', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
+        <AppBar position="fixed" sx={{ backgroundColor: '#ffffff', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',marginBottom:"2rem" }}>
             <Container maxWidth="lg">
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
