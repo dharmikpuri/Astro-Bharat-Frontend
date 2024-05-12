@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import { TextField, Checkbox, FormControlLabel, Button, FormGroup, Box, Typography, Container, FormControl, InputLabel, Select, MenuItem, Grid, Input } from '@mui/material';
 import { useRegisterAstrologerMutation } from '../../App/service/api';
 
@@ -8,6 +8,7 @@ const Registration = () => {
     const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
     const [email, setEmail] = useState<string>("");
     const [image, setImage] = useState<File | null>(null);
+    const imageInputRef = useRef<HTMLInputElement>(null);
     const [name, setName] = useState<string>("");
     const [gender, setGender] = useState<string>("");
 
@@ -30,8 +31,8 @@ const Registration = () => {
 
     const handleSubmit = async () => {
         try {
-            if (!image) {
-                console.error("No image selected");
+            if (!name || !email || !gender || selectedLanguages.length === 0 || selectedSpecialties.length === 0 || !image) {
+                alert('All fields are required');
                 return;
             }
 
@@ -47,7 +48,22 @@ const Registration = () => {
                     image: imageUrl
                 };
                 const result = await data(formData);
-                console.log(result.data.message, "result");
+                if (result.data.message === "Email already registered. Please try with another one.") {
+                    alert(result.data.message);
+                } else {
+                    alert(result.data.message);
+                    // Clear input fields
+                    setName('');
+                    setEmail('');
+                    setGender('');
+                    setSelectedLanguages([]);
+                    setSelectedSpecialties([]);
+                    setImage(null);
+                    setImage(null);
+                    if (imageInputRef.current) {
+                        imageInputRef.current.value = ''; // Reset the input field
+                    }
+                }
             } else {
                 console.error("Image upload failed or no image provided");
             }
@@ -58,7 +74,9 @@ const Registration = () => {
                 alert("Registration failed. Please try again later.");
             }
         }
-        console.log(registerAstrologer,"Register Astrologer")
+        // console.log(registerAstrologer,"Register Astrologer")
+
+
     };
 
     const ImageUpload = async (image: File) => {
@@ -104,7 +122,7 @@ const Registration = () => {
                 e.preventDefault();
                 handleSubmit();
             }}>
-                <Input type="file" onChange={handleImageChange} />
+                <Input type="file" onChange={handleImageChange} ref={imageInputRef}/>
                 <TextField fullWidth label="Name" value={name} onChange={(e) => setName(e.target.value)} margin="normal" />
                 <TextField fullWidth label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} margin="normal" />
                 <FormControl fullWidth margin="normal">
@@ -149,3 +167,7 @@ const Registration = () => {
 };
 
 export default Registration;
+function swal(message: any, arg1: string, arg2: string) {
+    throw new Error('Function not implemented.');
+}
+
