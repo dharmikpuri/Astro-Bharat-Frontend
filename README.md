@@ -16,15 +16,15 @@ Welcome to Astrologer, a web application where users can add, view, and edit ast
 ## Screenshots
 
 **Landing page**
-![astro landing](<img src="./src/assets/LandinPage.png" alt-"Landing page"/>)
+<img src="./src/assets/LandinPage.png" alt="Landing page"/>
 
 
 **Register New Astrologer Page**
-![astro add](/astro-bharat-frontend/src/assets/RegistrationPage.png)
+<img src="./src/assets/RegistrationPage.png" alt="Registration page"/>
 
 
 **Edit Astrologer page**
-![astro edit](/astro-bharat-frontend/src/assets/updatePage.png)
+<img src="./src/assets/updatePage.png" alt="Update page"/>
 
 
 ## Tech Stack
