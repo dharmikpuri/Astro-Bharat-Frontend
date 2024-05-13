@@ -1,4 +1,4 @@
-import React, { Key, useEffect } from 'react'
+import  { useEffect } from 'react'
 import { useGetAllastrologersQuery } from '../../App/service/api';
 import AstrologerCard from './AstrologerCard';
 import Loading from '../LoadingIndicator/Loading';

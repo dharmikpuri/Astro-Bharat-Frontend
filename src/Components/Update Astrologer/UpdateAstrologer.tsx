@@ -1,13 +1,13 @@
-import React, {useEffect, useState } from 'react';
-import { TextField, Checkbox, FormControlLabel, Button, FormGroup, Box, Typography, Container, FormControl, InputLabel, Select, MenuItem, Grid, Input } from '@mui/material';
+import  {useEffect, useState } from 'react';
+import { TextField, Checkbox, FormControlLabel, Button, FormGroup, Box, Typography, Container, FormControl, InputLabel, Select, MenuItem, Grid} from '@mui/material';
 import {useUpdateAstologerMutation } from '../../App/service/api';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const UpdateAstrologer = () => {
     const location = useLocation();
+    console.log(location.state, "State")
     const navigate = useNavigate();
-    // console.log(location.state, "State")
-    const [data, registerAstrologer] = useUpdateAstologerMutation();
+    const [data] = useUpdateAstologerMutation();
     const [selectedLanguages, setSelectedLanguages] = useState<string[]>(location.state.languages || []);
     const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>(location.state.specialities || []);
     const [email, setEmail] = useState<string>(location.state.email || "");

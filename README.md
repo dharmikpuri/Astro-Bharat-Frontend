@@ -1,30 +1,63 @@
-# React + TypeScript + Vite
+# Astrologer Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Astrologer, a web application where users can add, view, and edit astrological data.
 
-Currently, two official plugins are available:
+## Deployment Link
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Link to the deployed website](https://astro-bharat-frontend.vercel.app/)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Add Data:** Users can add new astrological data to the system.
+- **View Data:** All added data can be viewed in a structured format.
+- **Edit Data:** Users have the ability to edit existing astrological data.
+- **Image Storage:** Utilizes Cloudinary for storing images related to astrological data.
 
-- Configure the top-level `parserOptions` property like this:
+## Screenshots
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+**Landing page**
+![astro landing](/astro-bharat-frontend/src/assets/LandinPage.png)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+**Register New Astrologer Page**
+![astro add](/astro-bharat-frontend/src/assets/RegistrationPage.png)
+
+
+**Edit Astrologer page**
+![astro edit](/astro-bharat-frontend/src/assets/updatePage.png)
+
+
+## Tech Stack
+
+### Frontend
+- React.js
+- TypeScript
+- Material UI
+- HTML
+- CSS
+
+### Backend
+- Node.js
+- Express
+- MongoDB
+- TypeScript
+
+## Getting Started
+
+To run this project locally, follow these steps:
+
+1. Clone this repository.
+2. Navigate to the project directory.
+3. Install dependencies by running: npm install
+4. Start the frontend development server: npm run dev
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1. Fork this repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your changes to your fork.
+5. Submit a pull request.
+   

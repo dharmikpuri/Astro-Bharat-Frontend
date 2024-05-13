@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -15,8 +15,7 @@ const AstrologerCard: React.FC<AstrologerCardProps> = ({ astrologer }) => {
         {
             field: "profileImageUrl",
             headerName: "Profile Image",
-            width: 200,
-            renderCell: (params) => <img src={params.value} alt="Astrologer" />,
+            renderCell: (params) => <img src={params.value} alt="Astrologer" style={{width:50, height:50, borderRadius:"50%"}} />,
         },
         { field: 'name', headerName: 'Name', flex: 1 },
         { field: 'gender', headerName: 'Gender', flex: 1 },

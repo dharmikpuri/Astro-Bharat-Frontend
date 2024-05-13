@@ -1,4 +1,3 @@
-import React from 'react'
 import Astrologer from '../../Components/HomePage Components/Astrologer'
 
 const HomePage = () => {

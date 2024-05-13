@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import  { ChangeEvent, useRef, useState } from 'react';
 import { TextField, Checkbox, FormControlLabel, Button, FormGroup, Box, Typography, Container, FormControl, InputLabel, Select, MenuItem, Grid, Input } from '@mui/material';
 import { useRegisterAstrologerMutation } from '../../App/service/api';
 import { useNavigate } from 'react-router-dom';
@@ -170,7 +170,4 @@ const Registration = () => {
 };
 
 export default Registration;
-function swal(message: any, arg1: string, arg2: string) {
-    throw new Error('Function not implemented.');
-}
 
